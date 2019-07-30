@@ -30,8 +30,17 @@
 ;; enabe hippie-expand to M-Space
 (global-set-key "\M- " 'hippie-expand)
 
+;; color settings for mode line
 (set-face-foreground 'mode-line "black")
 (set-face-background 'mode-line "green")
+
+;; color settings
+(set-foreground-color "grean")
+(set-background-color "black")
+
+;; persist the clock over histories
+(setq org-clock-persist 'history)
+(org-clock-persistence-insinuate)
 
 
 (custom-set-variables
