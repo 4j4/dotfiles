@@ -60,7 +60,6 @@
  '(custom-safe-themes
    (quote
     ("ffedf8efaf706855579354a34a2da94a9f1d67c64f9b4269649a6a600a0e4a9b" default)))
- '(display-battery-mode t)
  '(gud-gdb-command-name "gdb --annotate=1")
  '(large-file-warning-threshold nil)
  '(show-paren-mode t))
@@ -70,3 +69,34 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; modeline settings
+(setq-default mode-line-format
+	      (list
+	       ;; buffer name
+	       "%b "
+	       ;; line and column
+	       "(%02l,%02c) "
+	       "["
+	       ;; position in the document
+	       "%p"
+	       "/"
+	       ;; size
+	       "%I"
+	       "] "
+	       "["
+	       ;; mode
+	       "%m"
+	       "] "
+	       "["
+	       ;; statur row, Overwrite, Modifier, ReadOnly
+	       '(:eval (if overwrite-mode "Ovr" "Ins"))
+	       '(:eval (when (buffer-modified-p) ",Mod"))
+	       '(:eval (when (buffer-read-only) ",Ro"))
+	       "] "
+	       ;; Time
+	       '(:eval (format-time-string "%H:%M"))
+	       ;; fill up with dashes
+	       " --"
+	       "%-"
+       ))
