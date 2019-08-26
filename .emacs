@@ -25,9 +25,6 @@
       kept-old-version 2
       version-control t)
 
-;; enabe hippie-expand to M-Space
-(global-set-key "\M- " 'hippie-expand)
-
 ;; color settings for mode line
 (set-face-foreground 'mode-line "black")
 (set-face-background 'mode-line "green")
