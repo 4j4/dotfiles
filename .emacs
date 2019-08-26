@@ -9,12 +9,6 @@
 	     '("gnu" . "https://elpa.gnu.org/packages/") t)
 (package-initialize)
 
-;; Erlang mode configuration
-(setq load-path (cons "/Users/aja/.erlangInstaller/default/lib/tools-3.2/emacs" load-path))
-(setq erlang-root-dir "/Users/aja/.erlangInstaller/default")
-(setq exec-path (cons "/Users/aja/.erlangInstaller/default/bin" exec-path))
-(require 'erlang-start)
-
 ;; backup settings
 ;; store all backups at one location -filename- files
 (setq backup-directory-alist '(("." . "~/.saves")))
@@ -66,6 +60,7 @@
     ("ffedf8efaf706855579354a34a2da94a9f1d67c64f9b4269649a6a600a0e4a9b" default)))
  '(gud-gdb-command-name "gdb --annotate=1")
  '(large-file-warning-threshold nil)
+ '(package-selected-packages (quote (erlang markdown-mode)))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
