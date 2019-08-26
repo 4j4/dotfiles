@@ -1,11 +1,15 @@
-;; Erlang mode configuration
-
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
+(require 'package)
+(add-to-list 'package-archives
+	     '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives
+	     '("gnu" . "https://elpa.gnu.org/packages/") t)
 (package-initialize)
 
+;; Erlang mode configuration
 (setq load-path (cons "/Users/aja/.erlangInstaller/default/lib/tools-3.2/emacs" load-path))
 (setq erlang-root-dir "/Users/aja/.erlangInstaller/default")
 (setq exec-path (cons "/Users/aja/.erlangInstaller/default/bin" exec-path))
