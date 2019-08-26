@@ -60,6 +60,7 @@
     ("ffedf8efaf706855579354a34a2da94a9f1d67c64f9b4269649a6a600a0e4a9b" default)))
  '(gud-gdb-command-name "gdb --annotate=1")
  '(large-file-warning-threshold nil)
+ '(menu-bar-mode nil)
  '(package-selected-packages (quote (erlang markdown-mode)))
  '(show-paren-mode t))
 (custom-set-faces
