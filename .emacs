@@ -40,6 +40,16 @@
 ;; Request note after clocking out in ORG mode
 (setq org-log-note-clock-out t)
 
+;; erlang settings
+;; root dir, used for man pages
+(setq erlang-root-dir "~/.erlangInstaller/22.0")
+(add-hook 'erlang-mode-hook 'my-erlang-hook)
+(defun my-erlang-hook ()
+  (setq indent-tabs-mode nil))
+
+;; tabs offset 4
+(setq c-basic-offset 4)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -58,7 +68,7 @@
  '(gud-gdb-command-name "gdb --annotate=1")
  '(large-file-warning-threshold nil)
  '(menu-bar-mode nil)
- '(package-selected-packages (quote (erlang markdown-mode)))
+ '(package-selected-packages (quote (haskell-mode erlang markdown-mode)))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
