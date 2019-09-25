@@ -68,7 +68,9 @@
  '(gud-gdb-command-name "gdb --annotate=1")
  '(large-file-warning-threshold nil)
  '(menu-bar-mode nil)
- '(package-selected-packages (quote (haskell-mode erlang markdown-mode)))
+ '(package-selected-packages
+   (quote
+    (company-ghc company-erlang company haskell-mode erlang markdown-mode)))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
