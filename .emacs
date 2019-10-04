@@ -25,14 +25,6 @@
       kept-old-version 2
       version-control t)
 
-;; color settings for mode line
-(set-face-foreground 'mode-line "black")
-(set-face-background 'mode-line "green")
-
-;; color settings
-(set-foreground-color "grean")
-(set-background-color "black")
-
 ;; persist the clock over histories
 (setq org-clock-persist t)
 (org-clock-persistence-insinuate)
@@ -66,13 +58,12 @@
    ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
  '(cua-mode t nil (cua-base))
  '(cursor-type (quote box))
- '(custom-enabled-themes (quote (Aja_MacConsole)))
+ '(custom-enabled-themes nil)
  '(custom-safe-themes
    (quote
     ("ffedf8efaf706855579354a34a2da94a9f1d67c64f9b4269649a6a600a0e4a9b" default)))
  '(gud-gdb-command-name "gdb --annotate=1")
  '(large-file-warning-threshold nil)
- '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
     (company-ghc company-erlang company haskell-mode erlang markdown-mode)))
