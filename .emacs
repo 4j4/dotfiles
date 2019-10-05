@@ -46,7 +46,6 @@
 (add-hook 'after-init-hook 'global-company-mode)
 (global-set-key (kbd "C-x c") 'company-complete)
 
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -105,3 +104,10 @@
 	       " --"
 	       "%-"
        ))
+
+(defun aja-split-window-func ()
+  (interactive)
+  (split-window-vertically)
+  (set-window-buffer (next-window) (other-buffer)))
+
+(global-set-key "\C-x2" 'aja-split-window-func)
