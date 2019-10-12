@@ -65,7 +65,7 @@
  '(large-file-warning-threshold nil)
  '(package-selected-packages
    (quote
-    (company-ghc company-erlang company haskell-mode erlang markdown-mode)))
+    (elm-mode company-ghc company-erlang company haskell-mode erlang markdown-mode)))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
