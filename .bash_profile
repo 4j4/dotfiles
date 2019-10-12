@@ -3,6 +3,7 @@ export CLICOLOR=1
 export PS1="\h:\W $ "
 source ~/.profile
 source ~/.ghcup/env
+source ~/.ssh_alias 
 alias passgen='LC_CTYPE=C tr -dc _A-Z-a-z-0-9 < /dev/urandom | fold -w24 | head -n1'
 
 # use GNU tools instead of BSD
