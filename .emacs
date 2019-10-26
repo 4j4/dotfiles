@@ -57,12 +57,17 @@
    ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
  '(cua-mode t nil (cua-base))
  '(cursor-type (quote box))
- '(custom-enabled-themes nil)
+ '(custom-enabled-themes (quote (wombat)))
  '(custom-safe-themes
    (quote
     ("ffedf8efaf706855579354a34a2da94a9f1d67c64f9b4269649a6a600a0e4a9b" default)))
+ '(frame-background-mode (quote dark))
  '(gud-gdb-command-name "gdb --annotate=1")
+ '(ido-mode (quote buffer) nil (ido))
  '(large-file-warning-threshold nil)
+ '(org-modules
+   (quote
+    (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-w3m)))
  '(package-selected-packages
    (quote
     (elm-mode company-ghc company-erlang company haskell-mode erlang markdown-mode)))
@@ -72,7 +77,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(company-preview ((t (:background "brightblack" :foreground "wheat"))))
+ '(company-preview-common ((t (:inherit company-preview))))
+ '(company-scrollbar-bg ((t nil)))
+ '(company-tooltip-annotation ((t (:foreground "brightyellow"))))
+ '(company-tooltip-common ((t (:foreground "brightyellow"))))
+ '(company-tooltip-selection ((t (:background "brightblue")))))
 
 ;; modeline settings
 (setq-default mode-line-format
