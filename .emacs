@@ -68,7 +68,7 @@
  '(org-startup-indented t)
  '(package-selected-packages
    (quote
-    (elm-mode company-ghc company-erlang company haskell-mode erlang markdown-mode)))
+    (magit elm-mode company-ghc company-erlang company haskell-mode erlang markdown-mode)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(size-indication-mode t)
@@ -78,13 +78,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#181a26" :foreground "gray80" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "nil" :family "Menlo"))))
- '(company-preview ((t (:background "brightblack" :foreground "wheat"))))
- '(company-preview-common ((t (:inherit company-preview))))
- '(company-scrollbar-bg ((t nil)))
- '(company-tooltip-annotation ((t (:foreground "brightyellow"))))
- '(company-tooltip-common ((t (:foreground "brightyellow"))))
- '(company-tooltip-selection ((t (:background "brightblue")))))
+ '(default ((t (:inherit nil :stipple nil :background "#181a26" :foreground "gray80" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "nil" :family "Menlo")))))
 
 (defun aja-split-window-func ()
   (interactive)
@@ -92,6 +86,9 @@
   (set-window-buffer (next-window) (other-buffer)))
 
 (global-set-key "\C-x2" 'aja-split-window-func)
+
+;; magit - git settings
+(global-set-key (kbd "C-x g") 'magit-status)
 
 ;; org mode settings
 ;; ------------------
