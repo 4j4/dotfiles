@@ -51,6 +51,7 @@
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
+ '(column-number-mode t)
  '(cua-mode t nil (cua-base))
  '(cursor-type (quote box))
  '(custom-enabled-themes (quote (deeper-blue)))
@@ -68,7 +69,9 @@
  '(package-selected-packages
    (quote
     (elm-mode company-ghc company-erlang company haskell-mode erlang markdown-mode)))
+ '(scroll-bar-mode nil)
  '(show-paren-mode t)
+ '(size-indication-mode t)
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -82,37 +85,6 @@
  '(company-tooltip-annotation ((t (:foreground "brightyellow"))))
  '(company-tooltip-common ((t (:foreground "brightyellow"))))
  '(company-tooltip-selection ((t (:background "brightblue")))))
-
-;; modeline settings
-(setq-default mode-line-format
-	      (list
-	       ;; buffer name
-	       "%b "
-	       ;; line and column
-	       "(%02l,%02c) "
-	       "["
-	       ;; position in the document
-	       "%p"
-	       "/"
-	       ;; size
-	       "%I"
-	       "] "
-	       "["
-	       ;; mode
-	       "%m"
-	       "] "
-	       "["
-	       ;; statur row, Overwrite, Modifier, ReadOnly
-	       '(:eval (if overwrite-mode "Ovr" "Ins"))
-	       '(:eval (when (buffer-modified-p) ",Mod"))
-	       '(:eval (when (buffer-read-only) ",Ro"))
-	       "] "
-	       ;; Time
-	       '(:eval (format-time-string "%H:%M"))
-	       ;; fill up with dashes
-	       " --"
-	       "%-"
-       ))
 
 (defun aja-split-window-func ()
   (interactive)
