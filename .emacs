@@ -25,13 +25,6 @@
       kept-old-version 2
       version-control t)
 
-;; persist the clock over histories
-(setq org-clock-persist t)
-(org-clock-persistence-insinuate)
-
-;; Request note after clocking out in ORG mode
-(setq org-log-note-clock-out t)
-
 ;; erlang settings
 ;; root dir, used for man pages
 (setq erlang-root-dir "~/.erlangInstaller/22.0")
@@ -68,6 +61,7 @@
  '(org-modules
    (quote
     (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-w3m)))
+ '(org-startup-indented t)
  '(package-selected-packages
    (quote
     (elm-mode company-ghc company-erlang company haskell-mode erlang markdown-mode)))
@@ -121,3 +115,28 @@
   (set-window-buffer (next-window) (other-buffer)))
 
 (global-set-key "\C-x2" 'aja-split-window-func)
+
+;; org mode settings
+;; ------------------
+;; short cuts
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
+
+;; persist the clock over histories
+(setq org-clock-persist t)
+(org-clock-persistence-insinuate)
+
+;; Request note after clocking out in ORG mode
+(setq org-log-note-clock-out t)
+
+;; start indented. May slowdown the startup on large org files
+(setq org-startup-indented t)
+
+;; org-capture default notes file
+(setq org-default-notes-file (concat org-directory "/notes.org"))
+
+;; org-capture templates
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks") "* TODO %?\n  %i\n %a")
+	("j" "Add journal entry" entry (file+olp+datetree "~/org/journal.org") "")))
