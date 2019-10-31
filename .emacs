@@ -25,6 +25,9 @@
       kept-old-version 2
       version-control t)
 
+;; show no welcome screen
+(setq inhibit-splash-screen t)
+
 ;; erlang settings
 ;; root dir, used for man pages
 (setq erlang-root-dir "~/.erlangInstaller/22.0")
@@ -50,10 +53,11 @@
    ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
  '(cua-mode t nil (cua-base))
  '(cursor-type (quote box))
- '(custom-enabled-themes (quote (wombat)))
+ '(custom-enabled-themes (quote (deeper-blue)))
  '(custom-safe-themes
    (quote
     ("ffedf8efaf706855579354a34a2da94a9f1d67c64f9b4269649a6a600a0e4a9b" default)))
+ '(display-battery-mode t)
  '(frame-background-mode (quote dark))
  '(gud-gdb-command-name "gdb --annotate=1")
  '(ido-mode (quote buffer) nil (ido))
@@ -65,12 +69,14 @@
  '(package-selected-packages
    (quote
     (elm-mode company-ghc company-erlang company haskell-mode erlang markdown-mode)))
- '(show-paren-mode t))
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "#181a26" :foreground "gray80" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "nil" :family "Menlo"))))
  '(company-preview ((t (:background "brightblack" :foreground "wheat"))))
  '(company-preview-common ((t (:inherit company-preview))))
  '(company-scrollbar-bg ((t nil)))
