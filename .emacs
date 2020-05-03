@@ -9,6 +9,11 @@
 	     '("gnu" . "https://elpa.gnu.org/packages/") t)
 (package-initialize)
 
+;; settings to get GUI Emacs running on MacOS
+(setq default-input-method "MaxOSX")
+(setq mac-command-modifier 'meta)
+(setq mac-option-modifier 'none)
+
 ;; backup settings
 ;; store all backups at one location -filename- files
 (setq backup-directory-alist '(("." . "~/.saves")))
@@ -30,17 +35,16 @@
 
 ;; erlang settings
 ;; root dir, used for man pages
-(setq erlang-root-dir "~/.erlangInstaller/22.0")
+;(setq erlang-root-dir "~/.erlangInstaller/22.0")
+(setq exec-path (cons "/usr/local/bin" exec-path))
 (add-hook 'erlang-mode-hook 'my-erlang-hook)
 (defun my-erlang-hook ()
   (setq indent-tabs-mode nil))
+(setq erlang-electric-commands '(erlang-electric-comma erlang-electric-semicolon))
+(require 'erlang-start)
 
 ;; tabs offset 4
 (setq c-basic-offset 4)
-
-;; Company
-(add-hook 'after-init-hook 'global-company-mode)
-(global-set-key (kbd "C-x c") 'company-complete)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -52,7 +56,6 @@
  '(ansi-color-names-vector
    ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
  '(column-number-mode t)
- '(cua-mode t nil (cua-base))
  '(cursor-type (quote box))
  '(custom-enabled-themes (quote (deeper-blue)))
  '(custom-safe-themes
@@ -62,13 +65,14 @@
  '(gud-gdb-command-name "gdb --annotate=1")
  '(ido-mode (quote buffer) nil (ido))
  '(large-file-warning-threshold nil)
+ '(org-agenda-files (quote ("~/org/dinner_list.org" "~/org/gtd.org")))
  '(org-modules
    (quote
     (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-w3m)))
  '(org-startup-indented t)
  '(package-selected-packages
    (quote
-    (magit elm-mode company-ghc company-erlang company haskell-mode erlang markdown-mode)))
+    (neotree dired-sidebar engine-mode magit elm-mode company-ghc company-erlang company haskell-mode erlang markdown-mode)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(size-indication-mode t)
@@ -78,7 +82,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#181a26" :foreground "gray80" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "nil" :family "Menlo")))))
+ '(default ((t (:inherit nil :stipple nil :background "#181a26" :foreground "gray80" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 160 :width normal :foundry "nil" :family "Hasklig")))))
 
 (defun aja-split-window-func ()
   (interactive)
@@ -113,4 +117,58 @@
 ;; org-capture templates
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks") "* TODO %?\n  %i\n %a")
-	("j" "Add journal entry" entry (file+olp+datetree "~/org/journal.org") "")))
+	("j" "Add journal entry" entry (file+olp+datetree "~/org/journal.org") "")
+	("a" "Appointment" entry (file+headline "~/org/gtd.org" "Appointments") "* %?")
+	))
+
+;; gpg setting to ask for passphrase
+(setq epa-pinentry-mode 'loopback)
+
+;; include diary into agenda
+(setq org-agenda-include-diary t)
+
+;; Company mode settings
+;; ---------------------
+;; Keyboard hooks
+(add-hook 'after-init-hook 'global-company-mode)
+(global-set-key (kbd "C-x c") 'company-complete)
+
+;; ELM mode settings
+;; -----------------
+
+;; Fix elm-make location issue from versin 0.18 to .19
+(setq elm-package-json "elm.json")
+(setq elm-format-elm-version "0.19")
+
+
+;; HASKELL mode settings
+;; ---------------------
+
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+
+;; add search path for GHci
+(setenv "PATH" (concat (getenv "PATH") ":~/.ghcup/bin"))
+(setq exec-path (append exec-path '("~/.ghcup/bin")))
+
+;; NEOTREE file tree browse
+;;-------------------------
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+
+;; engine-mode settings
+;; --------------------
+(require 'engine-mode)
+(engine-mode t)
+
+(defengine hoogle
+  "https://hoogle.haskell.org/?hoogle=%s"
+  :keybinding "h")
+
+(defengine google
+  "http://www.google.com/search?ie=utf-8&oe=utf-8&q=%s"
+  :keybinding "g")
+
+(defengine stack-overflow
+  "https://stackoverflow.com/search?q=%s"
+  :keybinding "s")
+
