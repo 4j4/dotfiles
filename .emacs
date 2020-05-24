@@ -57,11 +57,10 @@
    ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
  '(column-number-mode t)
  '(cursor-type (quote box))
- '(custom-enabled-themes (quote (deeper-blue)))
+ '(custom-enabled-themes (quote (tsdh-light)))
  '(custom-safe-themes
    (quote
     ("ffedf8efaf706855579354a34a2da94a9f1d67c64f9b4269649a6a600a0e4a9b" default)))
- '(frame-background-mode (quote dark))
  '(gud-gdb-command-name "gdb --annotate=1")
  '(ido-mode (quote buffer) nil (ido))
  '(large-file-warning-threshold nil)
@@ -77,12 +76,15 @@
  '(show-paren-mode t)
  '(size-indication-mode t)
  '(tool-bar-mode nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#181a26" :foreground "gray80" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 160 :width normal :foundry "nil" :family "Hasklig")))))
+
+;; Default font size
+(set-face-attribute 'default nil :family "Hasklig" :height 180 :weight 'normal)
+
+;; show line numbers in all buffers
+(global-display-line-numbers-mode)
+
+;; word wrap for all buffers.
+(global-visual-line-mode)
 
 (defun aja-split-window-func ()
   (interactive)
