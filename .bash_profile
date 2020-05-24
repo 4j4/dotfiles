@@ -1,6 +1,6 @@
 export CLICOLOR=1
-#export LSCOLORS=ecfxcxdxbxegedabagacad
 export PS1="\h:\W $ "
+export LC_ALL=en_US.UTF-8
 source ~/.profile
 source ~/.ghcup/env
 source ~/.ssh_alias 
