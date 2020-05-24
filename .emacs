@@ -86,6 +86,13 @@
 ;; word wrap for all buffers.
 (global-visual-line-mode)
 
+;; F1 to switch to dark color mode (night mode)
+(global-set-key (kbd "<f1>") (lambda () (interactive) (load-theme 'misterioso t)))
+
+;; F2 to switch to light color mode (daylight mode)
+(global-set-key (kbd "<f2>") (lambda () (interactive) (load-theme 'adwaita t)))
+
+
 (defun aja-split-window-func ()
   (interactive)
   (split-window-vertically)
@@ -174,3 +181,9 @@
   "https://stackoverflow.com/search?q=%s"
   :keybinding "s")
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
