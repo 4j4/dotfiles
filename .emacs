@@ -14,6 +14,9 @@
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'none)
 
+;; set search path for custom emacs lisp (.el) files
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+
 ;; backup settings
 ;; store all backups at one location -filename- files
 (setq backup-directory-alist '(("." . "~/.saves")))
@@ -71,14 +74,20 @@
  '(org-startup-indented t)
  '(package-selected-packages
    (quote
-    (neotree dired-sidebar engine-mode magit elm-mode company-ghc company-erlang company haskell-mode erlang markdown-mode)))
+    (use-package flycheck flycheck-haskell neotree dired-sidebar engine-mode magit company-ghc company-erlang company haskell-mode erlang markdown-mode omnisharp)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(size-indication-mode t)
  '(tool-bar-mode nil))
 
 ;; Default font size
-(set-face-attribute 'default nil :family "Hasklig" :height 180 :weight 'normal)
+(set-face-attribute 'default nil
+		    :family "Hasklig"
+		    :height 160
+		    :weight 'normal
+		    :width 'normal)
+(use-package hasklig-mode
+  :hook (haskell-mode))
 
 ;; show line numbers in all buffers
 (global-display-line-numbers-mode)
@@ -142,22 +151,31 @@
 (add-hook 'after-init-hook 'global-company-mode)
 (global-set-key (kbd "C-x c") 'company-complete)
 
+(eval-after-load
+  'company
+  '(add-to-list 'company-backends 'company-omnisharp))
+(add-hook 'csharp-mode-hook #'company-mode)
+
 ;; ELM mode settings
 ;; -----------------
 
 ;; Fix elm-make location issue from versin 0.18 to .19
-(setq elm-package-json "elm.json")
-(setq elm-format-elm-version "0.19")
+;;(setq elm-package-json "elm.json")
+;;(setq elm-format-elm-version "0.19")
 
 
 ;; HASKELL mode settings
 ;; ---------------------
+(defun my-haskell-mode-setup ()
+  (interactive-haskell-mode)
+  (company-mode)
+  (flycheck-haskell-setup)
+  (flycheck-mode)
 
-(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+  (setenv "PATH" (concat (getenv "PATH") ":~/.ghcup/bin"))
+  (setq exec-path (append exec-path '("~/.ghcup/bin"))))
 
-;; add search path for GHci
-(setenv "PATH" (concat (getenv "PATH") ":~/.ghcup/bin"))
-(setq exec-path (append exec-path '("~/.ghcup/bin")))
+(add-hook 'haskell-mode-hook 'my-haskell-mode-setup t)
 
 ;; NEOTREE file tree browse
 ;;-------------------------
@@ -180,6 +198,31 @@
 (defengine stack-overflow
   "https://stackoverflow.com/search?q=%s"
   :keybinding "s")
+
+;; CSharp setup using Omnisharp
+;;-----------------------------
+(defun my-csharp-mode-setup ()
+  (omnisharp-mode)
+  (company-mode)
+  (flycheck-mode)
+
+  (setq indent-tabs-mode nil)
+  (setq c-syntactic-indentation t)
+  (c-set-style "ellemtel")
+  (setq c-basic-offset 4)
+  (setq truncate-lines t)
+  (setq tab-width 4)
+  (setq evil-shift-width 4)
+
+  ;csharp-mode README.md recommends this too
+  ;(electric-pair-mode 1)       ;; Emacs 24
+  (electric-pair-local-mode 1) ;; Emacs 25
+
+  (local-set-key (kbd "C-c r r") 'omnisharp-run-code-action-refactoring)
+  (local-set-key (kbd "C-c C-c") 'recompile))
+
+(add-hook 'csharp-mode-hook 'my-csharp-mode-setup t)
+
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
