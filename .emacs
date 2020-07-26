@@ -23,10 +23,43 @@
 (require 'magit)
 
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(ansi-color-names-vector
+   ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
+ '(column-number-mode t)
+ '(custom-enabled-themes (quote (misterioso)))
+ '(custom-safe-themes
+   (quote
+    ("ffedf8efaf706855579354a34a2da94a9f1d67c64f9b4269649a6a600a0e4a9b" default)))
+ '(gud-gdb-command-name "gdb --annotate=1")
+ '(ido-mode (quote buffer) nil (ido))
+ '(large-file-warning-threshold nil)
+ '(org-agenda-files (quote ("~/org/dinner_list.org" "~/org/gtd.org")))
+ '(org-modules
+   (quote
+    (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-w3m)))
+ '(org-startup-indented t)
+ '(package-selected-packages
+   (quote
+    (use-package flycheck flycheck-haskell neotree dired-sidebar engine-mode magit company-ghc company-erlang company haskell-mode erlang markdown-mode omnisharp)))
+ '(scroll-bar-mode nil)
+ '(show-paren-mode t)
+ '(size-indication-mode t)
+ '(tool-bar-mode nil))
+
 ;; settings to get GUI Emacs running on MacOS
 (setq default-input-method "MaxOSX")
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'none)
+
+(setq-default cursor-type '(hbar . 4))
+;;(set-cursor-color "#00ff44")
 
 ;; set search path for custom emacs lisp (.el) files
 (add-to-list 'load-path "~/.emacs.d/lisp/")
@@ -50,48 +83,9 @@
 ;; show no welcome screen
 (setq inhibit-splash-screen t)
 
-;; erlang settings
-;; root dir, used for man pages
-(defun my-erlang-hook ()
-  (setq indent-tabs-mode nil)
-  (setq exec-path (cons "/usr/local/bin" exec-path))
-  (setq erlang-electric-commands '(erlang-electric-comma)
- erlang-electric-semicolon))
-(add-hook 'erlang-mode-hook 'my-erlang-hook)
 
 ;; tabs offset 4
 (setq c-basic-offset 4)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(ansi-color-names-vector
-   ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
- '(column-number-mode t)
- '(cursor-type (quote box))
- '(custom-enabled-themes (quote (tsdh-light)))
- '(custom-safe-themes
-   (quote
-    ("ffedf8efaf706855579354a34a2da94a9f1d67c64f9b4269649a6a600a0e4a9b" default)))
- '(gud-gdb-command-name "gdb --annotate=1")
- '(ido-mode (quote buffer) nil (ido))
- '(large-file-warning-threshold nil)
- '(org-agenda-files (quote ("~/org/dinner_list.org" "~/org/gtd.org")))
- '(org-modules
-   (quote
-    (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-w3m)))
- '(org-startup-indented t)
- '(package-selected-packages
-   (quote
-    (use-package flycheck flycheck-haskell neotree dired-sidebar engine-mode magit company-ghc company-erlang company haskell-mode erlang markdown-mode omnisharp)))
- '(scroll-bar-mode nil)
- '(show-paren-mode t)
- '(size-indication-mode t)
- '(tool-bar-mode nil))
 
 ;; Default font size
 (set-face-attribute 'default nil
@@ -102,17 +96,34 @@
 (use-package hasklig-mode
   :hook (haskell-mode))
 
+;; Cursor blink behavior
+;; n = 0 -> never stop blinking
+;; nil   -> never blink
+;; n > 0 -> stop blinking after n blinks w/o input
+(setq blink-cursor-mode 20)
+
 ;; show line numbers in all buffers
 (global-display-line-numbers-mode)
 
 ;; word wrap for all buffers.
 (global-visual-line-mode)
 
+;; Color modes for day and night.
+(defun night-mode ()
+  (interactive)
+  (load-theme 'misterioso t)
+  (set-cursor-color "#00ff44"))
+
+(defun day-mode ()
+  (interactive)
+  (load-theme 'adwaita t)
+  (set-cursor-color "#000000"))
+
 ;; F1 to switch to dark color mode (night mode)
-(global-set-key (kbd "<f1>") (lambda () (interactive) (load-theme 'misterioso t)))
+(global-set-key (kbd "<f1>") 'night-mode)
 
 ;; F2 to switch to light color mode (daylight mode)
-(global-set-key (kbd "<f2>") (lambda () (interactive) (load-theme 'adwaita t)))
+(global-set-key (kbd "<f2>") 'day-mode)
 
 
 (defun aja-split-window-func ()
@@ -168,6 +179,15 @@
   'company
   '(add-to-list 'company-backends 'company-omnisharp))
 (add-hook 'csharp-mode-hook #'company-mode)
+
+;; erlang settings
+;; root dir, used for man pages
+(defun my-erlang-hook ()
+  (setq indent-tabs-mode nil)
+  (setq exec-path (cons "/usr/local/bin" exec-path))
+  (setq erlang-electric-commands '(erlang-electric-comma)
+ erlang-electric-semicolon))
+(add-hook 'erlang-mode-hook 'my-erlang-hook)
 
 ;; HASKELL mode settings
 ;; ---------------------
