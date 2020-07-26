@@ -169,14 +169,6 @@
   '(add-to-list 'company-backends 'company-omnisharp))
 (add-hook 'csharp-mode-hook #'company-mode)
 
-;; ELM mode settings
-;; -----------------
-
-;; Fix elm-make location issue from versin 0.18 to .19
-;;(setq elm-package-json "elm.json")
-;;(setq elm-format-elm-version "0.19")
-
-
 ;; HASKELL mode settings
 ;; ---------------------
 (defun my-haskell-mode-setup ()
