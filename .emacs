@@ -9,6 +9,20 @@
 	     '("gnu" . "https://elpa.gnu.org/packages/") t)
 (package-initialize)
 
+;; required packages
+(require 'erlang-start)
+(require 'flycheck)
+(require 'flycheck-haskell)
+(require 'neotree)
+(require 'company)
+(require 'company-ghc)
+(require 'company-erlang)
+(require 'haskell-mode)
+(require 'omnisharp)
+(require 'engine-mode)
+(require 'magit)
+
+
 ;; settings to get GUI Emacs running on MacOS
 (setq default-input-method "MaxOSX")
 (setq mac-command-modifier 'meta)
@@ -38,13 +52,12 @@
 
 ;; erlang settings
 ;; root dir, used for man pages
-;(setq erlang-root-dir "~/.erlangInstaller/22.0")
-(setq exec-path (cons "/usr/local/bin" exec-path))
-(add-hook 'erlang-mode-hook 'my-erlang-hook)
 (defun my-erlang-hook ()
-  (setq indent-tabs-mode nil))
-(setq erlang-electric-commands '(erlang-electric-comma erlang-electric-semicolon))
-(require 'erlang-start)
+  (setq indent-tabs-mode nil)
+  (setq exec-path (cons "/usr/local/bin" exec-path))
+  (setq erlang-electric-commands '(erlang-electric-comma)
+ erlang-electric-semicolon))
+(add-hook 'erlang-mode-hook 'my-erlang-hook)
 
 ;; tabs offset 4
 (setq c-basic-offset 4)
@@ -179,12 +192,10 @@
 
 ;; NEOTREE file tree browse
 ;;-------------------------
-(require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 
 ;; engine-mode settings
 ;; --------------------
-(require 'engine-mode)
 (engine-mode t)
 
 (defengine hoogle
