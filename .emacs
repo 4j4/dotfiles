@@ -10,17 +10,17 @@
 (package-initialize)
 
 ;; required packages
-(require 'erlang-start)
-(require 'flycheck)
-(require 'flycheck-haskell)
-(require 'neotree)
-(require 'company)
-(require 'company-ghc)
-(require 'company-erlang)
-(require 'haskell-mode)
-(require 'omnisharp)
-(require 'engine-mode)
-(require 'magit)
+;;(require 'erlang-start)
+;;(require 'flycheck)
+;;(require 'flycheck-haskell)
+;;(require 'neotree)
+;;(require 'company)
+;;(require 'company-ghc)
+;;(require 'company-erlang)
+;;(require 'haskell-mode)
+;;(require 'omnisharp)
+;;(require 'engine-mode)
+;;(require 'magit)
 
 
 (custom-set-variables
@@ -94,7 +94,8 @@
 		    :weight 'normal
 		    :width 'normal)
 (use-package hasklig-mode
-  :hook (haskell-mode))
+  :hook (haskell-mode)
+  :hook (erlang-mode))
 
 ;; Cursor blink behavior
 ;; n = 0 -> never stop blinking
@@ -185,8 +186,7 @@
 (defun my-erlang-hook ()
   (setq indent-tabs-mode nil)
   (setq exec-path (cons "/usr/local/bin" exec-path))
-  (setq erlang-electric-commands '(erlang-electric-comma)
- erlang-electric-semicolon))
+  (setq erlang-electric-commands '(erlang-electric-comma 'erlang-electric-semicolon)))
 (add-hook 'erlang-mode-hook 'my-erlang-hook)
 
 ;; HASKELL mode settings
@@ -204,7 +204,7 @@
 
 ;; NEOTREE file tree browse
 ;;-------------------------
-(global-set-key [f8] 'neotree-toggle)
+;;(global-set-key [f8] 'neotree-toggle)
 
 ;; engine-mode settings
 ;; --------------------
