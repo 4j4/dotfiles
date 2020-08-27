@@ -111,8 +111,8 @@
 ;; show line numbers in all buffers
 (global-display-line-numbers-mode)
 
-;; word wrap for all buffers.
-(global-visual-line-mode)
+;; do not line wrap. Full line width
+(set-default 'truncate-lines t)
 
 (defun aja-split-window-func ()
   (interactive)
