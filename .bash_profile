@@ -9,3 +9,6 @@ alias emacs='emacs -nw'
 
 # use GNU tools instead of BSD
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
+#ErlangInstaller
+export PATH="~/.erlangInstaller/default/bin:$PATH"
