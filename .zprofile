@@ -8,4 +8,4 @@ alias passgen='LC_CTYPE=C tr -dc _A-Z-a-z-0-9 < /dev/urandom | fold -w24 | head 
 # alias emacs='emacs -nw'
 
 # use GNU tools instead of BSD
-PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+PATH="/Users/aja/github/erlang_ls/_build/default/bin:/Users/aja/bin:/Users/aja/.erlangInstaller/default/bin/:/usr/local/opt/coreutils/libexec/gnubin:$PATH"
