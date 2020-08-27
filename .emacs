@@ -4,7 +4,7 @@
 ;; You may delete these explanatory comments.
 (require 'package)
 (add-to-list 'package-archives
-	     '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+     '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (add-to-list 'package-archives
 	     '("gnu" . "https://elpa.gnu.org/packages/") t)
 (package-initialize)
@@ -47,7 +47,7 @@
  '(org-startup-indented t)
  '(package-selected-packages
    (quote
-    (lsp-ui company-lsp lsp-mode use-package flycheck flycheck-haskell neotree dired-sidebar engine-mode magit company-ghc company-erlang company haskell-mode erlang markdown-mode omnisharp)))
+    (lsp-ui lsp-mode use-package flycheck flycheck-haskell neotree dired-sidebar engine-mode magit company-ghc company-erlang company haskell-mode erlang markdown-mode omnisharp)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(size-indication-mode t)
@@ -92,9 +92,15 @@
 		    :height 160
 		    :weight 'normal
 		    :width 'normal)
+
 (use-package hasklig-mode
   :hook (haskell-mode)
   :hook (erlang-mode))
+
+(use-package company-mode
+  :hook (erlang-mode)
+  :hook (haskell-mode)
+  :hook (emacs-lisp-mode))
 
 ;; Cursor blink behavior
 ;; n = 0 -> never stop blinking
@@ -172,21 +178,27 @@
 ;; Company mode settings
 ;; ---------------------
 ;; Keyboard hooks
-(add-hook 'after-init-hook 'global-company-mode)
 (global-set-key (kbd "C-x c") 'company-complete)
 
 (eval-after-load
-  'company
-  '(add-to-list 'company-backends 'company-omnisharp 'company-lsp 'company-erlang))
-(add-hook 'csharp-mode-hook #'company-mode)
+    'company
+    '(add-to-list 'company-backends 'company-omnisharp 'company-lsp 'company-erlang))
 
 ;; erlang settings
 ;; root dir, used for man pages
-(defun my-erlang-hook ()
+(defun my-erlang-mode-setup ()
   (setq indent-tabs-mode nil)
   (setq exec-path (cons "/usr/local/bin" exec-path))
-  (setq erlang-electric-commands '(erlang-electric-comma 'erlang-electric-semicolon)))
-(add-hook 'erlang-mode-hook 'my-erlang-hook 'lsp)
+  (setq erlang-electric-commands '(erlang-electric-comma 'erlang-electric-semicolon))
+  (setq exec-path (cons "/Users/aja/github/erlang_ls/_build/default/bin" exec-path))
+  (setenv "PATH" (concat (getenv "PATH") ":/Users/aja/.erlangInstaller/default/bin"))
+  )
+
+(add-hook 'erlang-mode-hook 'my-erlang-mode-setup #'lsp)
+
+
+;; LSP
+;;------
 
 (setq lsp-keymap-prefix "C-l")
 
