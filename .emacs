@@ -114,24 +114,6 @@
 ;; word wrap for all buffers.
 (global-visual-line-mode)
 
-;; Color modes for day and night.
-(defun night-mode ()
-  (interactive)
-  (load-theme 'misterioso t)
-  (set-cursor-color "#00ff44"))
-
-(defun day-mode ()
-  (interactive)
-  (load-theme 'adwaita t)
-  (set-cursor-color "#000000"))
-
-;; F1 to switch to dark color mode (night mode)
-(global-set-key (kbd "<f1>") 'night-mode)
-
-;; F2 to switch to light color mode (daylight mode)
-(global-set-key (kbd "<f2>") 'day-mode)
-
-
 (defun aja-split-window-func ()
   (interactive)
   (split-window-vertically)
