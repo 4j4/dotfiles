@@ -33,10 +33,10 @@
  '(ansi-color-names-vector
    ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
  '(column-number-mode t)
- '(custom-enabled-themes (quote (misterioso)))
+ '(custom-enabled-themes (quote (monokai)))
  '(custom-safe-themes
    (quote
-    ("ffedf8efaf706855579354a34a2da94a9f1d67c64f9b4269649a6a600a0e4a9b" default)))
+    ("9abe2b502db3ed511fea7ab84b62096ba15a3a71cdb106fd989afa179ff8ab8d" "ffedf8efaf706855579354a34a2da94a9f1d67c64f9b4269649a6a600a0e4a9b" default)))
  '(gud-gdb-command-name "gdb --annotate=1")
  '(ido-mode (quote buffer) nil (ido))
  '(large-file-warning-threshold nil)
@@ -47,7 +47,7 @@
  '(org-startup-indented t)
  '(package-selected-packages
    (quote
-    (lsp-ui lsp-mode use-package flycheck flycheck-haskell neotree dired-sidebar engine-mode magit company-ghc company-erlang company haskell-mode erlang markdown-mode omnisharp)))
+    (monokai-theme lsp-ui lsp-mode use-package flycheck flycheck-haskell neotree dired-sidebar engine-mode magit company-ghc company-erlang company haskell-mode erlang markdown-mode omnisharp)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(size-indication-mode t)
@@ -57,8 +57,6 @@
 (setq default-input-method "MaxOSX")
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'none)
-
-(set-cursor-color "#00ff44")
 
 ;; set search path for custom emacs lisp (.el) files
 (add-to-list 'load-path "~/.emacs.d/lisp/")
@@ -181,7 +179,6 @@
 
 ;; LSP
 ;;------
-
 (setq lsp-keymap-prefix "C-l")
 
 ;; HASKELL mode settings
@@ -203,6 +200,7 @@
 
 ;; engine-mode settings
 ;; --------------------
+;; C-x / followed by the keybinding
 (engine-mode t)
 
 (defengine hoogle
@@ -241,10 +239,23 @@
 
 (add-hook 'csharp-mode-hook 'my-csharp-mode-setup t)
 
+;;coloring dark
+(require 'color)
+(let ((bg (face-attribute 'default :background)))
+    (custom-set-faces
+     `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 2)))))
+     `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 10)))))
+     `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
+     `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
+     `(company-tooltip-common ((t (:inherit font-lock-constant-face))))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(company-scrollbar-bg ((t (:background "#41bf505b61e3"))))
+ '(company-scrollbar-fg ((t (:background "#377643c95293"))))
+ '(company-tooltip ((t (:inherit default :background "#314a3c3e4963"))))
+ '(company-tooltip-common ((t (:inherit font-lock-constant-face))))
+ '(company-tooltip-selection ((t (:inherit font-lock-function-name-face)))))
