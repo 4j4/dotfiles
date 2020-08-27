@@ -47,7 +47,7 @@
  '(org-startup-indented t)
  '(package-selected-packages
    (quote
-    (use-package flycheck flycheck-haskell neotree dired-sidebar engine-mode magit company-ghc company-erlang company haskell-mode erlang markdown-mode omnisharp)))
+    (lsp-ui company-lsp lsp-mode use-package flycheck flycheck-haskell neotree dired-sidebar engine-mode magit company-ghc company-erlang company haskell-mode erlang markdown-mode omnisharp)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(size-indication-mode t)
@@ -58,8 +58,7 @@
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'none)
 
-(setq-default cursor-type '(hbar . 4))
-;;(set-cursor-color "#00ff44")
+(set-cursor-color "#00ff44")
 
 ;; set search path for custom emacs lisp (.el) files
 (add-to-list 'load-path "~/.emacs.d/lisp/")
@@ -178,7 +177,7 @@
 
 (eval-after-load
   'company
-  '(add-to-list 'company-backends 'company-omnisharp))
+  '(add-to-list 'company-backends 'company-omnisharp 'company-lsp 'company-erlang))
 (add-hook 'csharp-mode-hook #'company-mode)
 
 ;; erlang settings
@@ -187,7 +186,9 @@
   (setq indent-tabs-mode nil)
   (setq exec-path (cons "/usr/local/bin" exec-path))
   (setq erlang-electric-commands '(erlang-electric-comma 'erlang-electric-semicolon)))
-(add-hook 'erlang-mode-hook 'my-erlang-hook)
+(add-hook 'erlang-mode-hook 'my-erlang-hook 'lsp)
+
+(setq lsp-keymap-prefix "C-l")
 
 ;; HASKELL mode settings
 ;; ---------------------
