@@ -9,6 +9,9 @@
 	     '("gnu" . "https://elpa.gnu.org/packages/") t)
 (package-initialize)
 
+;; set search path for custom emacs lisp (.el) files
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -34,7 +37,7 @@
  '(org-startup-indented t)
  '(package-selected-packages
    (quote
-    (markdown-preview-mode monokai-theme lsp-ui lsp-mode use-package flycheck flycheck-haskell neotree dired-sidebar engine-mode magit company-ghc company-erlang company haskell-mode erlang markdown-mode omnisharp)))
+    (markdown-preview-mode monokai-theme lsp-ui lsp-mode use-package flycheck flycheck-haskell dired-sidebar engine-mode magit company-ghc company-erlang company haskell-mode erlang markdown-mode omnisharp)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(size-indication-mode t)
@@ -44,9 +47,6 @@
 (setq default-input-method "MaxOSX")
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'none)
-
-;; set search path for custom emacs lisp (.el) files
-(add-to-list 'load-path "~/.emacs.d/lisp/")
 
 ;; backup settings
 ;; store all backups at one location -filename- files
