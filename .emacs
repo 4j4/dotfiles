@@ -9,20 +9,6 @@
 	     '("gnu" . "https://elpa.gnu.org/packages/") t)
 (package-initialize)
 
-;; required packages
-;;(require 'erlang-start)
-;;(require 'flycheck)
-;;(require 'flycheck-haskell)
-;;(require 'neotree)
-;;(require 'company)
-;;(require 'company-ghc)
-;;(require 'company-erlang)
-;;(require 'haskell-mode)
-;;(require 'omnisharp)
-;;(require 'engine-mode)
-;;(require 'magit)
-
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
