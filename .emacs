@@ -40,6 +40,7 @@
  '(gud-gdb-command-name "gdb --annotate=1")
  '(ido-mode (quote buffer) nil (ido))
  '(large-file-warning-threshold nil)
+ '(markdown-command "grip - ")
  '(org-agenda-files (quote ("~/org/dinner_list.org" "~/org/gtd.org")))
  '(org-modules
    (quote
@@ -47,7 +48,7 @@
  '(org-startup-indented t)
  '(package-selected-packages
    (quote
-    (monokai-theme lsp-ui lsp-mode use-package flycheck flycheck-haskell neotree dired-sidebar engine-mode magit company-ghc company-erlang company haskell-mode erlang markdown-mode omnisharp)))
+    (markdown-preview-mode monokai-theme lsp-ui lsp-mode use-package flycheck flycheck-haskell neotree dired-sidebar engine-mode magit company-ghc company-erlang company haskell-mode erlang markdown-mode omnisharp)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(size-indication-mode t)
@@ -99,6 +100,9 @@
   :hook (erlang-mode)
   :hook (haskell-mode)
   :hook (emacs-lisp-mode))
+
+(use-package lsp
+  :hook (erlang-mode))
 
 ;; Cursor blink behavior
 ;; n = 0 -> never stop blinking
@@ -249,13 +253,29 @@
      `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
      `(company-tooltip-common ((t (:inherit font-lock-constant-face))))))
 
+(setenv "PATH" (concat (getenv "PATH") ":/Users/aja/bin"))
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+;(setq markdown-open-command "/Users/aja/bin/markdown.pl")
+
+;; disabling annoyance behaviour
+;;------------------------------
+
+;; disable sound on reaching top or bottom or end of line
+;; instead make the mode line blink
+(setq visible-bell nil
+      ring-bell-function 'flash-mode-line)
+(defun flash-mode-line ()
+  (invert-face 'mode-line)
+  (run-with-timer 0.1 nil #'invert-face 'mode-line))
+
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(company-scrollbar-bg ((t (:background "#41bf505b61e3"))))
- '(company-scrollbar-fg ((t (:background "#377643c95293"))))
- '(company-tooltip ((t (:inherit default :background "#314a3c3e4963"))))
+ '(company-scrollbar-bg ((t (:background "#422243d439a8"))))
+ '(company-scrollbar-fg ((t (:background "#34a435fe2de5"))))
+ '(company-tooltip ((t (:inherit default :background "#2c8c2db026d6"))))
  '(company-tooltip-common ((t (:inherit font-lock-constant-face))))
  '(company-tooltip-selection ((t (:inherit font-lock-function-name-face)))))
