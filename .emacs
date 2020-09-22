@@ -104,6 +104,15 @@
 (use-package lsp
   :hook (erlang-mode))
 
+(use-package flycheck
+  :diminish flycheck-mode
+  :config
+  (add-hook 'after-init-hook 'global-flycheck-mode)
+  (setq flycheck-display-errors-function nil
+        flycheck-erlang-include-path '("../include")
+        flycheck-erlang-library-path '()
+        flycheck-check-syntax-automatically '(save)))
+
 ;; Cursor blink behavior
 ;; n = 0 -> never stop blinking
 ;; nil   -> never blink
