@@ -22,10 +22,10 @@
  '(ansi-color-names-vector
    ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
  '(column-number-mode t)
- '(custom-enabled-themes (quote (monokai)))
+ '(custom-enabled-themes (quote (night-owl)))
  '(custom-safe-themes
    (quote
-    ("9abe2b502db3ed511fea7ab84b62096ba15a3a71cdb106fd989afa179ff8ab8d" "ffedf8efaf706855579354a34a2da94a9f1d67c64f9b4269649a6a600a0e4a9b" default)))
+    ("e081d167861aa1af9e423a10b00c560b1c18ab8f3627dfbe35ff4455bd993d36" "20a8ec387dde11cc0190032a9f838edcc647863c824eed9c8e80a4155f8c6037" "9abe2b502db3ed511fea7ab84b62096ba15a3a71cdb106fd989afa179ff8ab8d" "ffedf8efaf706855579354a34a2da94a9f1d67c64f9b4269649a6a600a0e4a9b" default)))
  '(gud-gdb-command-name "gdb --annotate=1")
  '(ido-mode (quote buffer) nil (ido))
  '(large-file-warning-threshold nil)
@@ -37,7 +37,7 @@
  '(org-startup-indented t)
  '(package-selected-packages
    (quote
-    (markdown-preview-mode monokai-theme lsp-ui lsp-mode use-package flycheck flycheck-haskell dired-sidebar engine-mode magit company-ghc company-erlang company haskell-mode erlang markdown-mode omnisharp)))
+    (night-owl-theme cyberpunk-theme markdown-preview-mode monokai-theme lsp-ui lsp-mode use-package flycheck dired-sidebar engine-mode magit company-ghc company-erlang company haskell-mode erlang markdown-mode omnisharp)))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(size-indication-mode t)
@@ -97,7 +97,7 @@
   (setq flycheck-display-errors-function nil
         flycheck-erlang-include-path '("../include")
         flycheck-erlang-library-path '()
-        flycheck-check-syntax-automatically '(save)))
+        flycheck-check-syntax-automatically '()))
 
 ;; Cursor blink behavior
 ;; n = 0 -> never stop blinking
@@ -269,8 +269,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(company-scrollbar-bg ((t (:background "#422243d439a8"))))
- '(company-scrollbar-fg ((t (:background "#34a435fe2de5"))))
- '(company-tooltip ((t (:inherit default :background "#2c8c2db026d6"))))
  '(company-tooltip-common ((t (:inherit font-lock-constant-face))))
  '(company-tooltip-selection ((t (:inherit font-lock-function-name-face)))))
